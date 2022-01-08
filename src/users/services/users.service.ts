@@ -3,7 +3,7 @@ import { Db } from 'mongodb';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
-
+// dependencies
 import { User } from '../entities/user.entity';
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
 import { ProductsService } from '../../products/services/products.service';
