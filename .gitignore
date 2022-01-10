@@ -35,8 +35,3 @@ lerna-debug.log*
 
 *.env
 /mongo_data
-
-# Packages dependencies
-
-/package-lock.json
-/yarn.lock
