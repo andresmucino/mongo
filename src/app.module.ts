@@ -9,7 +9,6 @@ import { ProductsModule } from './products/products.module';
 import { DatabaseModule } from './database/database.module';
 import { enviroments } from './enviroments';
 import { AuthModule } from './auth/auth.module';
-import { AuthService } from './auth/service/auth.service';
 import config from './config';
 
 @Module({
@@ -43,7 +42,6 @@ import config from './config';
       },
       inject: [HttpService],
     },
-    AuthService,
   ],
 })
 export class AppModule {}

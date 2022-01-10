@@ -3,10 +3,11 @@ import { Db } from 'mongodb';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import * as bcrypt from 'bcrypt';
-// dependencies
+
 import { User } from '../entities/user.entity';
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
 import { ProductsService } from '../../products/services/products.service';
+import { exec } from 'node:child_process';
 
 @Injectable()
 export class UsersService {
@@ -39,18 +40,17 @@ export class UsersService {
     };
   }
 
-  findByEmail(email: string) {
-    return this.userModel.findOne({ email }).exec();
-  }
-
   async create(data: CreateUserDto) {
     const newModel = new this.userModel(data);
     const hashPassword = await bcrypt.hash(newModel.password, 10);
     newModel.password = hashPassword;
     const model = await newModel.save();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...rta } = model.toJSON();
     return rta;
+  }
+
+  findByEmail(email: string) {
+    return this.userModel.findOne({ email }).exec();
   }
 
   update(id: string, changes: UpdateUserDto) {
